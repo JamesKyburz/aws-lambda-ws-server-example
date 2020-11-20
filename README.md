@@ -8,6 +8,8 @@ in AWS
 npm i
 serverless deploy
 npx wscat -c url
+> {"message": "echo", "hello": "world"}
+< {"message":{"message":"echo","hello":"world"}}
 ```
 
 or locally
@@ -15,7 +17,9 @@ or locally
 ```sh
 npm i
 node src/index
-npx wscat -c url
+npx wscat -c ws://localhost:5000
+> {"message": "echo", "hello": "world"}
+< {"message":{"message":"echo","hello":"world"}}
 ```
 
 # license

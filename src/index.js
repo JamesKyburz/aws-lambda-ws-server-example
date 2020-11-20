@@ -9,14 +9,14 @@ exports.handler = ws(
       console.log('disconnect %s', id)
       return { statusCode: 200 }
     },
-    async default ({ message, id }) {
-      console.log('default message', message, id)
+    async default ({ message, event, id }) {
+      console.log('default message', message, id, event)
       return { statusCode: 200 }
     },
-    async message ({ message, id, context }) {
+    async echo ({ message, id, context, event }) {
       const { postToConnection } = context
-      console.log('message', message, id)
-      await postToConnection({ message: 'echo' }, id)
+      console.log('message', message, id, event)
+      await postToConnection({ message }, id)
       return { statusCode: 200 }
     }
   })
