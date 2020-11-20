@@ -26,6 +26,9 @@
   "dependencies": {
     "aws-lambda-ws-server": "^0.1.21"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "serverless": "^2.11.1",
+    "wscat": "^4.0.1"
+  },
   "license": "Apache-2.0"
 }
