@@ -1,0 +1,27 @@
+service: ws-example
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-north-1
+  stage: dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "execute-api:ManageConnections"
+      Resource:
+        - "arn:aws:execute-api:*:*:**/@connections/*"
+
+  websocketsApiRouteSelectionExpression: $request.body.message
+
+functions:
+  handler:
+    handler: src/index.handler
+    events:
+      - websocket:
+          route: $connect
+      - websocket:
+          route: $disconnect
+      - websocket:
+          route: message
+      - websocket: $default
